@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Video embebido</title>
+  <style>
+    :root{--max-width:900px;--accent:#0ea5a4}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:#f7faf9; color:#0f172a; display:flex; align-items:flex-start; justify-content:center; padding:32px}
+    .container{width:100%; max-width:var(--max-width); background:#fff; border-radius:12px; box-shadow:0 6px 20px rgba(2,6,23,0.08); padding:20px}
+    h1{font-size:1.25rem; margin:0 0 8px}
+    p.lead{margin:0 0 16px; color:#334155}
+    /* Contenedor responsivo para mantener la relación de aspecto 16:9 */
+    .video-wrapper{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000}
+    .video-wrapper iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+    .actions{display:flex; gap:8px; margin-top:12px}
+    .btn{display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; border:1px solid rgba(2,6,23,0.06)}
+    .btn--primary{background:var(--accent); color:white}
+    .btn--link{background:transparent; color:var(--accent)}
+    footer{margin-top:16px; color:#64748b; font-size:0.9rem}
+    @media (max-width:420px){body{padding:16px} .container{padding:14px} h1{font-size:1.05rem}}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Video embebido</h1>
+    <p class="lead">A continuación tienes el video que solicitaste incrustado en una página web responsiva. Si lo deseas puedo ajustar estilos, tamaño o añadir más videos.</p>
+
+    <div class="video-wrapper" aria-hidden="false">
+      <iframe allow="fullscreen; autoplay; allow-top-navigation-by-user-activation" allowfullscreen width="795" height="690" frameborder="0" src="https://es.educaplay.com/juego/3488748-la_computadora_y_sus_partes.html"></iframe>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn--primary" href="https://www.youtube.com/watch?v=Zs-o-BhFA9s" target="_blank" rel="noopener">Abrir en YouTube</a>
+      <a class="btn btn--link" href="#" id="downloadBtn">Descargar HTML</a>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U3CGMyjzlvM?si=uh-5CbL-ZMIug-Ax" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <footer>
+      Si necesitas que lo convierta en un componente React, una página con varios videos o que cambie el diseño, dímelo y lo hago.
+    </footer>
+  </main>
+
+  <script>
+    // Botón simple para descargar el archivo HTML tal como está
+    document.getElementById('downloadBtn').addEventListener('click', function(e){
+      e.preventDefault();
+      const content = `<!doctype html>\n${document.documentElement.outerHTML}`;
+      const blob = new Blob([content], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'video_embebido.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
