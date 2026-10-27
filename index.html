@@ -1,35 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Mi primera web con CSS</title>
-    <meta name="author" content="Ing. Nancy Rincón Calixto">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retos HTML: estructura y estilos de IA</title>
+<style>
+:root{--navy:#17324D;--gold:#EFC86B;--blue:#DCE8F5;--bg:#edf1f5;--line:#d3dce6}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#1d2935}
+header{background:var(--navy);color:white;padding:18px 22px}
+header h1{margin:0 0 6px;font-size:clamp(1.25rem,2vw,1.8rem)}
+header p{margin:0;line-height:1.5}
+main{max-width:1600px;margin:auto;padding:16px}
+.intro{background:#fff8e4;border:1px solid #ead8a0;border-radius:10px;padding:13px 16px;line-height:1.5;margin-bottom:14px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tab{background:white;border:1px solid #b9c7d5;color:var(--navy)}
+.tab.active{background:var(--navy);color:white}
+.challenge{display:none}.challenge.active{display:block}
+.reference{border:1px solid var(--line);background:white;border-radius:10px;overflow:hidden;margin-bottom:15px}
+.ref-head{padding:12px 15px;background:var(--blue);color:var(--navy);display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.ref-head h2{font-size:1.03rem;margin:0}
+.ref-frame{padding:10px;background:#e8edf2}
+.ref-frame iframe{width:100%;height:360px;border:1px solid #c8d2dd;background:white;display:block}
+.layout{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(280px,1fr) minmax(290px,1.1fr);gap:13px;align-items:start}
+.panel{background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:0}
+.panel h2{font-size:1rem;margin:0;padding:12px 14px;background:var(--blue);color:var(--navy)}
+.panel-body{padding:11px}
+.cards{display:flex;flex-direction:column;gap:8px}
+.card{border:1px solid #c6d1dd;border-left:5px solid var(--gold);border-radius:7px;background:#fffdf6;padding:9px;cursor:grab;user-select:none}
+.card:active{cursor:grabbing}
+.card strong{display:block;font-size:.86rem;margin-bottom:5px}
+.card code{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.45 Consolas,monospace;color:#293a4b}
+.card small{display:block;margin-top:5px;color:#657384}
+.dropzone{min-height:260px;border:2px dashed #9bafc1;border-radius:8px;padding:8px;background:#f8fafc}
+.dropzone.dragover{background:#eaf4ff;border-color:#2165a6}
+.empty{text-align:center;color:#617184;padding:28px 10px;line-height:1.5}
+.placed{display:flex;align-items:flex-start;gap:7px;background:white;border:1px solid #cbd5df;border-radius:6px;margin:6px 0;padding:7px;cursor:grab}
+.num{width:24px;height:24px;flex:0 0 24px;display:grid;place-items:center;border-radius:50%;background:var(--navy);color:white;font-size:.8rem;font-weight:bold}
+.snippet{flex:1;min-width:0}.snippet strong{display:block;font-size:.82rem;margin-bottom:4px}.snippet code{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.4 Consolas,monospace}
+.placed button{padding:3px 7px;background:#eef1f4;color:#35475a}
+.buttons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+button{border:0;border-radius:7px;padding:10px 12px;font-weight:bold;cursor:pointer}
+.primary{background:var(--navy);color:white}.secondary{background:white;border:1px solid #bdc9d5;color:var(--navy)}
+.status{margin-top:10px;padding:11px;border-radius:7px;background:#f0f4f8;font-size:.9rem;line-height:1.45}
+.status.good{background:#e8f5e9;color:#1b5e20}.status.bad{background:#fff0ef;color:#8e211a}
+.preview{padding:9px;background:#e8edf2}.preview iframe{width:100%;height:530px;display:block;border:1px solid #c8d2dd;background:white}
+.tip{font-size:.83rem;line-height:1.5;color:#5b6877}
+details summary{cursor:pointer;color:var(--navy);font-weight:bold}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f7fa;padding:10px;border-radius:6px;font:12px/1.4 Consolas,monospace;max-height:230px;overflow:auto}
+@media(max-width:1000px){.layout{grid-template-columns:1fr 1fr}.preview-panel{grid-column:1/-1}.preview iframe{height:440px}}
+@media(max-width:650px){main{padding:8px}.layout{grid-template-columns:1fr}.preview-panel{grid-column:auto}}
+</style>
 </head>
-<body style="margin: 40px;"> <!--permite dejar una margen de 40 pixeles por los cuatro costados de la web-->
+<body>
+<div style="width:80%;background-color:#F0F6F7;margin:auto;border-radius:15px">
+<header>
 
-<h1>HIPERVÍNCULOS</h1>
-
-<h2>Hipervínculo de una palabra a una página externa</h2>
-<a href="https://www.google.com">Ir a Google</a>
-
-<h2>Hipervínculo de una frase a una página web dentro de mi computador</h2>
-<a href="listas.html">Página de listas en html</a>   <!--esta página web debe estar guardado en la misma carpeta-->
-
-<h2>Hipervínculo de una imágen a una web externa</h2>
-<a href="https://www.youtube.com/"><img src="youtube.png" alt="Ir a YouTube"> <!--esta imágen debe estar guardado en la misma carpeta-->
-</a>
-
-<h2>Hipervínculo hacia un documento</h2>
-<a href="manual.pdf">Abrir el documento PDF</a>  <!--este archivo pdf debe estar guardado en la misma carpeta-->
-
-<h2>Hipervínculo de un botón a una parte dentro de la misma web</h2>
-<a href="#piedepagina">Ir al pie de página<a/>
-<!-- debe marcar las partes de la página a donde va a saltar-->
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<h1 style="text-align:center">Administración Turística y Hotelera</h1>
+<p style="text-align:center; "><img src="logo.png" alt="Logo Administración Turística y Hotelera" style="border-radius:15px;width:70px;height:70px"></p>
+<h2 style="text-align:center">AUTOEVALUACIÓN - ACTIVIDAD INTERACTIVA HTML 5</h2>
+<p style="text-align:center">Te reto a realizar la actividad hasta donde tus conocimientos te permitan.</p>
 
 
-<hr width="90%">
-<h2 id="piedepagina" align="center">Esta es la sección del pie de página</h2>
-<p align="center"><font color="grey" >Creada por Nancy Rincón C. ©Todos los derechos reservados 2025</font></p>
+</header>
+<main>
+<div class="intro">
+<strong>Instrucciones:</strong> realiza el Reto 1 y comprueba el orden. Cuando ingreses al Reto 2, el Reto 1 quedará bloqueado y no podrás volver a consultarlo. En el segundo reto solo verás una página sin estilos, un modelo visual y un banco de fragmentos con estilos dentro de las etiquetas HTML.
+</div>
+<div class="tabs" role="tablist">
+<button class="tab active" id="tab1" role="tab" aria-selected="true">Reto 1 · Ordenar HTML</button>
+<button class="tab" id="tab2" role="tab" aria-selected="false">Reto 2 · Aplicar estilos</button>
+</div>
+
+<section class="challenge active" id="challenge1">
+<div class="reference">
+<div class="ref-head"><h2>🎯 Modelo de referencia: página final</h2><span>Observa el resultado antes de comenzar</span></div>
+<div class="ref-frame"><iframe id="target1" title="Modelo de referencia del reto uno" sandbox=""></iframe></div>
+</div>
+<div class="buttons">
+<button class="primary" id="check1">✓ Comprobar orden</button>
+<button class="secondary" id="reset1">↻ Reiniciar reto 1</button>
+<button class="secondary" id="codeToggle1">Ver código actual</button>
+</div>
+<div class="layout">
+<section class="panel"><h2>1. Banco de fragmentos desordenados</h2><div class="panel-body"><div id="pieces1" class="cards"></div><p class="tip">Arrastra o haz clic en una tarjeta para añadirla.</p></div></section>
+<section class="panel"><h2>2. Editor: organiza el HTML</h2><div class="panel-body"><div id="editor1" class="dropzone"><div class="empty">Suelta aquí el primer fragmento.</div></div><div id="status1" class="status">Todavía no has colocado fragmentos.</div><details id="details1"><summary>Mostrar código HTML actual</summary><pre id="code1"></pre></details></div></section>
+<section class="panel preview-panel"><h2>3. Vista previa de tu página</h2><div class="preview"><iframe id="preview1" title="Vista previa reto uno" sandbox=""></iframe></div><div class="panel-body"><p class="tip">La vista previa se actualiza al añadir, retirar o mover fragmentos.</p></div></section>
+</div>
+</section>
+
+<section class="challenge" id="challenge2">
+<div class="reference">
+<div class="ref-head"><h2>🎯 Modelo de referencia: apariencia que debes lograr</h2><span>Solo muestra el resultado esperado; no muestra su código</span></div>
+<div class="ref-frame"><iframe id="target2" title="Modelo visual de estilos del reto dos" sandbox=""></iframe></div>
+</div>
+<div class="intro">
+<strong>Tu misión:</strong> la página de la vista previa comienza sin diseño. Arrastra los estilos desde el banco de la izquierda hasta el editor central. Cada estilo corresponde a una parte de la página. Observa la vista previa y compara con el modelo.
+<br><strong>Importante:</strong> este reto bloquea el acceso al Reto 1 y no muestra sus códigos.
+</div>
+<div class="buttons">
+<button class="primary" id="check2">✓ Comprobar estilos</button>
+<button class="secondary" id="reset2">↻ Reiniciar reto 2</button>
+<button class="secondary" id="codeToggle2">Ver estilos aplicados</button>
+</div>
+<div class="layout">
+<section class="panel"><h2>1. Banco de estilos</h2><div class="panel-body"><div id="pieces2" class="cards"></div><p class="tip">Arrastra cada fragmento con style dentro de la etiqueta HTML al editor. También puedes hacer clic para aplicarlo.</p></div></section>
+<section class="panel"><h2>2. Editor: aplica los estilos</h2><div class="panel-body"><div id="editor2" class="dropzone"><div class="empty">Suelta aquí los estilos que quieres aplicar.</div></div><div id="status2" class="status">Todavía no has aplicado estilos.</div><details id="details2"><summary>Mostrar estilos aplicados</summary><pre id="code2"></pre></details></div></section>
+<section class="panel preview-panel"><h2>3. Vista previa sin estilos + cambios</h2><div class="preview"><iframe id="preview2" title="Vista previa reto dos" sandbox=""></iframe></div><div class="panel-body"><p class="tip">Los estilos se aplican por separado. Puedes quitarlos, volver a colocarlos y ver qué cambia.</p></div></section>
+</div>
+</section>
+</main>
+<script>
+const htmlParts=[
+{id:"doctype",title:"01 · Tipo de documento",code:'<!DOCTYPE html>\n<html lang="es">'},
+{id:"head",title:"02 · Encabezado técnico",code:'<head>\n<meta charset="UTF-8">\n<title>Descubre la IA</title>\n</head>'},
+{id:"body",title:"03 · Inicio del contenido",code:'<body>\n<div>\n'},
+{id:"title",title:"04 · Título principal",code:'<h1>¡Descubre la Inteligencia Artificial! 🤖</h1>\n<hr>'},
+{id:"introh",title:"05 · Subtítulo",code:'<h2>¿Qué es la Inteligencia Artificial?</h2>'},
+{id:"intro",title:"06 · Descripción",code:'<p>La inteligencia artificial (IA) es una tecnología que permite a los computadores realizar tareas como comprender preguntas, reconocer imágenes y generar textos.</p>'},
+{id:"image",title:"07 · Imagen principal",code:'<p><img src="https://placehold.co/500x220/17324D/FFFFFF?text=Inteligencia+Artificial" alt="Ilustración sobre inteligencia artificial"></p>'},
+{id:"usesh",title:"08 · Subtítulo de usos",code:'<h2>¿Dónde se utiliza?</h2>'},
+{id:"list",title:"09 · Lista de usos",code:'<ul><li>Educación</li><li>Medicina</li><li>Empresas</li><li>Creación de imágenes y audio</li></ul>'},
+{id:"link",title:"10 · Enlace educativo",code:'<p><a href="https://www.unesco.org/en/digital-education">Conoce más sobre educación digital en la UNESCO</a></p>'},
+{id:"footer",title:"11 · Pie de página y cierre",code:'<hr><p>Creado por: escribe tu nombre<br>¡Aprendamos a utilizar la IA responsablemente!</p>\n</div>\n</body>\n</html>'}
+];
+const target1code=htmlParts.map(p=>p.code).join('\n');
+const baseBody=`<div id="page">
+<h1 id="mainTitle">¡Descubre la Inteligencia Artificial! 🤖</h1>
+<hr id="rule">
+<h2 id="whatTitle">¿Qué es la Inteligencia Artificial?</h2>
+<p id="introText">La inteligencia artificial (IA) es una tecnología que permite a los computadores realizar tareas como comprender preguntas, reconocer imágenes y generar textos.</p>
+<p id="heroImage"><img src="https://placehold.co/500x220/17324D/FFFFFF?text=Inteligencia+Artificial" alt="Ilustración sobre inteligencia artificial"></p>
+<h2 id="usesTitle">¿Dónde se utiliza?</h2>
+<ul id="usesList"><li>Educación</li><li>Medicina</li><li>Empresas</li><li>Creación de imágenes y audio</li></ul>
+<p id="resource"><a href="https://www.unesco.org/en/digital-education">Conoce más sobre educación digital en la UNESCO</a></p>
+<hr id="footerRule">
+<p id="footerText">Creado por: escribe tu nombre<br>¡Aprendamos a utilizar la IA responsablemente!</p>
+</div>`;
+const plainDoc=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Descubre la IA</title></head><body>${baseBody}</body></html>`;
+const styles=[
+{id:"page",title:"Estilo 1 · Contenedor principal",desc:"Centra la caja y agrega un fondo claro.",fragment:'<div style="width:85%; margin:20px auto; background-color:#F5F5F5; padding:14px;">',style:'width:85%; margin:20px auto; background-color:#F5F5F5; padding:14px;'},
+{id:"title",title:"Estilo 2 · Título principal",desc:"Centra el título y cambia el fondo y el color de la letra.",fragment:'<h1 style="text-align:center; background-color:#17324D; color:white;">',style:'text-align:center; background-color:#17324D; color:white;'},
+{id:"rule",title:"Estilo 3 · Línea decorativa",desc:"Cambia el color y el grosor de la línea.",fragment:'<hr style="height:4px; background-color:#EFC86B; border:0; width:80%;">',style:'height:4px; background-color:#EFC86B; border:0; width:80%;'},
+{id:"heads",title:"Estilo 4 · Subtítulos",desc:"Agrega fondo amarillo suave y espacio interno.",fragment:'<h2 style="background-color:#EFC86B; padding:8px;">',style:'background-color:#EFC86B; padding:8px;'},
+{id:"paragraph",title:"Estilo 5 · Párrafo",desc:"Aumenta el tamaño y justifica el texto.",fragment:'<p style="font-size:20px; text-align:justify; line-height:1.5;">',style:'font-size:20px; text-align:justify; line-height:1.5;'},
+{id:"image",title:"Estilo 6 · Imagen",desc:"Centra la imagen y agrega sombra.",fragment:'<p style="text-align:center;"><img style="width:80%; max-width:500px; box-shadow:0 0 12px #EFC86B;"',style:'text-align:center; width:80%; max-width:500px; box-shadow:0 0 12px #EFC86B;'},
+{id:"list",title:"Estilo 7 · Lista",desc:"Aumenta el tamaño de la letra y el espacio entre líneas.",fragment:'<ul style="font-size:18px; line-height:1.8;">',style:'font-size:18px; line-height:1.8;'},
+{id:"link",title:"Estilo 8 · Enlace",desc:"Centra el enlace y cambia su color.",fragment:'<p style="text-align:center;"><a style="color:#17324D; font-weight:bold;">',style:'text-align:center; color:#17324D; font-weight:bold;'},
+{id:"footer",title:"Estilo 9 · Pie de página",desc:"Agrega fondo oscuro, texto blanco y centra el contenido.",fragment:'<p style="text-align:center; background-color:#17324D; color:white; padding:12px;">',style:'text-align:center; background-color:#17324D; color:white; padding:12px;'}
+];
+function makeStyledBody(ids){
+ let body=baseBody;
+ const applied=new Set(ids);
+ if(applied.has('page')) body=body.replace('<div id="page">','<div id="page" style="width:85%; margin:20px auto; background-color:#F5F5F5; padding:14px;">');
+ if(applied.has('title')) body=body.replace('<h1 id="mainTitle">','<h1 id="mainTitle" style="text-align:center; background-color:#17324D; color:white;">');
+ if(applied.has('rule')) body=body.replace('<hr id="rule">','<hr id="rule" style="height:4px; background-color:#EFC86B; border:0; width:80%;">');
+ if(applied.has('heads')) { body=body.replace('<h2 id="whatTitle">','<h2 id="whatTitle" style="background-color:#EFC86B; padding:8px;">'); body=body.replace('<h2 id="usesTitle">','<h2 id="usesTitle" style="background-color:#EFC86B; padding:8px;">'); }
+ if(applied.has('paragraph')) body=body.replace('<p id="introText">','<p id="introText" style="font-size:20px; text-align:justify; line-height:1.5;">');
+ if(applied.has('image')) { body=body.replace('<p id="heroImage">','<p id="heroImage" style="text-align:center;">'); body=body.replace('<img src=', '<img style="width:80%; max-width:500px; box-shadow:0 0 12px #EFC86B;" src='); }
+ if(applied.has('list')) body=body.replace('<ul id="usesList">','<ul id="usesList" style="font-size:18px; line-height:1.8;">');
+ if(applied.has('link')) { body=body.replace('<p id="resource">','<p id="resource" style="text-align:center;">'); body=body.replace('<a href=', '<a style="color:#17324D; font-weight:bold;" href='); }
+ if(applied.has('footer')) body=body.replace('<p id="footerText">','<p id="footerText" style="text-align:center; background-color:#17324D; color:white; padding:12px;">');
+ return body;
+}
+const targetCSS='';
+document.getElementById('target1').srcdoc=target1code;
+document.getElementById('target2').srcdoc=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head><body>${makeStyledBody(styles.map(s=>s.id))}</body></html>`;
+let placed1=[],placed2=[],dragging=null, reto2Abierto=false;
+const $=id=>document.getElementById(id);
+function esc(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
+function renderBank(type){
+ const isStyle=type===2, bank=$(isStyle?'pieces2':'pieces1'), placed=isStyle?placed2:placed1, data=isStyle?styles:htmlParts;
+ bank.innerHTML='';
+ data.filter(x=>!placed.includes(x.id)).slice().reverse().forEach(item=>{
+  const el=document.createElement('div');el.className='card';el.draggable=true;
+  el.innerHTML=`<strong>${item.title}</strong>${isStyle?`<span class="tip">${item.desc}</span><code>${esc(item.fragment)}</code>`:`<code>${esc(item.code)}</code>`}<small>Arrastrar o hacer clic para añadir</small>`;
+  el.addEventListener('dragstart',e=>{dragging={type,id:item.id};e.dataTransfer.setData('text/plain',JSON.stringify(dragging));e.dataTransfer.effectAllowed='move'});
+  el.addEventListener('click',()=>add(type,item.id));
+  bank.appendChild(el);
+ });
+}
+function renderEditor(type){
+ const isStyle=type===2, editor=$(isStyle?'editor2':'editor1'), placed=isStyle?placed2:placed1, data=isStyle?styles:htmlParts;
+ editor.innerHTML='';
+ if(!placed.length){editor.innerHTML=`<div class="empty">${isStyle?'Suelta aquí los estilos que quieres aplicar.':'Suelta aquí el primer fragmento.'}</div>`;return}
+ placed.forEach((id,i)=>{
+  const item=data.find(x=>x.id===id), row=document.createElement('div');row.className='placed';row.draggable=true;
+  row.innerHTML=`<span class="num">${i+1}</span><div class="snippet"><strong>${item.title}</strong><code>${esc(isStyle?item.fragment:item.code)}</code></div><button type="button" title="Quitar">×</button>`;
+  row.querySelector('button').addEventListener('click',()=>{if(isStyle)placed2=placed2.filter(x=>x!==id);else placed1=placed1.filter(x=>x!==id);update(type)});
+  row.addEventListener('dragstart',e=>{dragging={type,id};e.dataTransfer.setData('text/plain',JSON.stringify(dragging));e.dataTransfer.effectAllowed='move'});
+  row.addEventListener('dragover',e=>e.preventDefault());
+  row.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();let src;try{src=JSON.parse(e.dataTransfer.getData('text/plain'))}catch{};if(src&&src.type===type&&src.id!==id)move(type,src.id,id)});
+  editor.appendChild(row);
+ });
+}
+function add(type,id){let arr=type===2?placed2:placed1;if(arr.includes(id))return;arr.push(id);update(type)}
+function move(type,source,target){let arr=type===2?placed2:placed1;if(!arr.includes(source))arr.push(source);arr=arr.filter(x=>x!==source);const ix=arr.indexOf(target);arr.splice(ix<0?arr.length:ix,0,source);if(type===2)placed2=arr;else placed1=arr;update(type)}
+function setupDrop(type){
+ const editor=$(type===2?'editor2':'editor1');
+ editor.addEventListener('dragover',e=>{e.preventDefault();editor.classList.add('dragover')});
+ editor.addEventListener('dragleave',e=>{if(!editor.contains(e.relatedTarget))editor.classList.remove('dragover')});
+ editor.addEventListener('drop',e=>{e.preventDefault();editor.classList.remove('dragover');let src;try{src=JSON.parse(e.dataTransfer.getData('text/plain'))}catch{};if(!src||src.type!==type)return;let arr=type===2?placed2:placed1;if(arr.includes(src.id))arr=arr.filter(x=>x!==src.id);arr.push(src.id);if(type===2)placed2=arr;else placed1=arr;update(type)});
+}
+function update(type){
+ const isStyle=type===2, placed=isStyle?placed2:placed1, data=isStyle?styles:htmlParts;
+ renderBank(type);renderEditor(type);
+ if(isStyle){
+  $('preview2').srcdoc=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head><body>${makeStyledBody(placed2)}</body></html>`;
+  $('code2').textContent=placed2.map(id=>styles.find(s=>s.id===id).fragment).join('\n\n')||'(Aún no has aplicado estilos.)';
+  $('status2').textContent=placed2.length?`Has aplicado ${placed2.length} de ${styles.length} estilos. Compara con el modelo de referencia.`:'Todavía no has aplicado estilos.';
+  $('status2').className='status';
+ }else{
+  $('preview1').srcdoc=placed1.map(id=>htmlParts.find(p=>p.id===id).code).join('\n');
+  $('code1').textContent=placed1.map(id=>htmlParts.find(p=>p.id===id).code).join('\n\n')||'(Aún no has añadido fragmentos.)';
+  $('status1').textContent=placed1.length?`Has colocado ${placed1.length} de ${htmlParts.length} fragmentos. Compara con el modelo.`:'Todavía no has colocado fragmentos.';
+  $('status1').className='status';
+ }
+}
+$('tab1').addEventListener('click',()=>{
+ if(reto2Abierto) return;
+ $('challenge1').classList.add('active');$('challenge2').classList.remove('active');
+ $('tab1').classList.add('active');$('tab2').classList.remove('active');
+ $('tab1').setAttribute('aria-selected','true');$('tab2').setAttribute('aria-selected','false');
+});
+$('tab2').addEventListener('click',()=>{
+ reto2Abierto=true;
+ $('tab1').disabled=true;
+ $('tab1').title='Reto 1 bloqueado: ya ingresaste al Reto 2.';
+ $('tab1').style.opacity='.45';
+ $('tab1').style.cursor='not-allowed';
+ $('challenge2').classList.add('active');$('challenge1').classList.remove('active');
+ $('tab2').classList.add('active');$('tab1').classList.remove('active');
+ $('tab2').setAttribute('aria-selected','true');$('tab1').setAttribute('aria-selected','false');
+});
+$('check1').addEventListener('click',()=>{const ok=placed1.length===htmlParts.length&&placed1.every((id,i)=>id===htmlParts[i].id);$('status1').textContent=ok?'¡Excelente! Todos los fragmentos están en el orden correcto.':`Hay ${htmlParts.length-placed1.length} fragmento(s) pendiente(s) o el orden no es correcto. Revisa la numeración.`;$('status1').className='status '+(ok?'good':'bad')});
+$('reset1').addEventListener('click',()=>{placed1=[];update(1)});
+$('codeToggle1').addEventListener('click',()=>{$('details1').open=!$('details1').open});
+$('check2').addEventListener('click',()=>{const ok=placed2.length===styles.length&&placed2.every(id=>styles.some(s=>s.id===id));$('status2').textContent=ok?'¡Muy bien! Aplicaste todos los estilos. Compara tu resultado con el modelo y explica qué hace cada estilo.':`Has aplicado ${placed2.length} de ${styles.length} estilos. Faltan ${styles.length-placed2.length}. Comprueba también si la apariencia se parece al modelo.`;$('status2').className='status '+(ok?'good':'bad')});
+$('reset2').addEventListener('click',()=>{placed2=[];update(2)});
+$('codeToggle2').addEventListener('click',()=>{$('details2').open=!$('details2').open});
+setupDrop(1);setupDrop(2);update(1);update(2);
+</script>
+</div>
 </body>
 </html>
